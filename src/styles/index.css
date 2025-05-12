@@ -1,0 +1,84 @@
+@import url('./variables.css');
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-family, 'Segoe UI', Arial, sans-serif);
+  background: var(--accent-color, #f2f2f2);
+  color: var(--text-color, #222);
+  margin: 0;
+  padding: 0;
+}
+
+.navbar {
+  position: sticky;
+  top: 0;
+  background: var(--primary-color, #2b6777);
+  color: #fff;
+  padding: 1rem 0;
+  z-index: 100;
+}
+.navbar ul {
+  display: flex;
+  gap: 2rem;
+  justify-content: center;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.navbar a {
+  color: #fff;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.2s;
+}
+.navbar a:hover {
+  color: var(--secondary-color, #c8d8e4);
+}
+
+section {
+  max-width: 700px;
+  margin: 3rem auto;
+  background: #fff;
+  border-radius: 10px;
+  padding: 2rem;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+
+.hero-section {
+  text-align: center;
+  background: var(--secondary-color, #c8d8e4);
+}
+
+.services-section ul {
+  padding-left: 1.2rem;
+}
+
+.contact-section form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+.contact-section input,
+.contact-section textarea {
+  padding: 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 1rem;
+}
+.contact-section button {
+  background: var(--primary-color, #2b6777);
+  color: #fff;
+  border: none;
+  padding: 0.75rem;
+  border-radius: 5px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.contact-section button:hover {
+  background: var(--secondary-color, #c8d8e4);
+  color: var(--primary-color, #2b6777);
+}
