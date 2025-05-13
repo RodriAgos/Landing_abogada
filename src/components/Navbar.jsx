@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { FaBars, FaWhatsapp, FaPhone, FaTimes } from 'react-icons/fa';
-import logo from '../assets/logo.png';
+import logo from '../assets/logo_horizontal_b.jpg';
 import './Navbar.css';
 
 const PHONE_NUMBER = '+56912345678'; // Cambia por el número real
