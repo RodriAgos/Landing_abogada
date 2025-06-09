@@ -5,6 +5,7 @@ import About from './sections/About';
 import Services from './sections/Services';
 import Contact from './sections/Contact';
 import Footer from './components/Footer';
+import ScrollToTop from './components/ScrollToTop';
 import './styles/index.css';
 
 function App() {
@@ -17,7 +18,8 @@ function App() {
         <Services />
         <Contact />
       </main>
-    <Footer />
+      <Footer />
+      <ScrollToTop />
     </>
   );
 }

@@ -15,7 +15,7 @@ const Footer = () => (
         <a href="mailto:contacto@abogada.cl"><FaEnvelope /> rubetgi@hotmail.com</a>
       </div>
       <div className="footer-section horario">
-      <h3 className="section-title">Horario</h3>
+        <h4>Horario</h4>
             <div className="hours-item">
               <span>Lunes-Viernes:</span>
               <span>9:00 - 20:00</span>
