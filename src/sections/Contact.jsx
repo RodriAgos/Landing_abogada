@@ -24,7 +24,7 @@ const Contact = () => {
                   <input type="tel" placeholder="Teléfono" />
                 </div>
                 <div className="form-group">
-                  <textarea placeholder="Su mensaje" rows="4" required></textarea>
+                  <textarea placeholder="Su mensaje" rows="6" required></textarea>
                 </div>
                 <button type="submit" className="submit-btn">Enviar Mensaje</button>
               </form>
