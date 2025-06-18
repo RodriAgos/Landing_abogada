@@ -2,31 +2,39 @@ import React, { useState, useEffect } from 'react';
 import '../styles/Services.css';
 
 // Importar imágenes (asegúrate de tener estas imágenes en tu carpeta de assets)
-import mediacionImg from '../assets/mediacion.jpg';
-import terrenosImg from '../assets/terrenos.jpg';
-import legalesImg from '../assets/legales.jpg';
+import escriturasImg from '../assets/legales.jpg';
+import arbitralesImg from '../assets/mediacion.jpg';
+import gestionesImg from '../assets/terrenos.jpg';
+import civilesImg from '../assets/civiles.jpg';
 
 const Services = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
+  const [isAutoPlayPaused, setIsAutoPlayPaused] = useState(false);
   
   const services = [
     {
       id: 1,
-      title: 'Mediación en Herencias',
-      description: 'Ofrecemos servicios profesionales de mediación para resolver conflictos hereditarios de manera pacífica y efectiva. Nuestro enfoque ayuda a las familias a encontrar soluciones consensuadas, evitando largos y costosos procesos judiciales.',
-      image: mediacionImg
+      title: 'Redacción de Escrituras',
+      description: 'Servicio profesional de análisis de títulos de propiedad para la redacción precisa de contratos de compraventa, usufructo, partición, separación de bienes y constitución de sociedades. Aseguramos que todos los documentos cumplan con la normativa vigente, protegiendo sus intereses.',
+      image: escriturasImg
     },
     {
       id: 2,
-      title: 'Venta de Terrenos',
-      description: 'Asesoramiento legal especializado en la compraventa de terrenos. Nos encargamos de todo el proceso legal, asegurando que la transacción sea segura y cumpla con todas las normativas vigentes.',
-      image: terrenosImg
+      title: 'Juicios Arbitrales',
+      description: 'Asesoramiento especializado en la designación de jueces árbitros para la resolución de conflictos entre comuneros o socios. Gestionamos todo el proceso del juicio arbitral o particional, ofreciendo soluciones efectivas y ágiles para comunidades de herederos y socios.',
+      image: arbitralesImg
     },
     {
       id: 3,
-      title: 'Otros Servicios Legales',
-      description: 'Amplia gama de servicios legales personalizados para cubrir todas sus necesidades. Desde asesoramiento jurídico hasta representación legal, estamos aquí para ayudarte con profesionalismo y dedicación.',
-      image: legalesImg
+      title: 'Gestiones Voluntarias',
+      description: 'Tramitación profesional de gestiones no contenciosas ante juzgados, incluyendo posesiones efectivas, autorizaciones para enajenar, peticiones mineras e informaciones para perpetua memoria. Garantizamos un seguimiento personalizado de cada trámite.',
+      image: gestionesImg
+    },
+    {
+      id: 4,
+      title: 'Juicios Civiles',
+      description: 'Representación legal especializada en juicios de deslindes, indemnización de perjuicios e incumplimiento de contrato. Desarrollamos estrategias legales efectivas para proteger sus derechos e intereses en cada caso.',
+      image: civilesImg
     }
   ];
 
@@ -42,20 +50,42 @@ const Services = () => {
     setCurrentSlide(index);
   };
 
-  // Auto-avanzar el carrusel cada 5 segundos
+  // Auto-avanzar el carrusel cada 5 segundos, a menos que esté pausado
   useEffect(() => {
+    if (isAutoPlayPaused) return;
+    
     const timer = setInterval(() => {
       nextSlide();
     }, 5000);
+    
     return () => clearInterval(timer);
-  }, [currentSlide]);
+  }, [currentSlide, isAutoPlayPaused]);
+  
+  // Pausar el auto-avance cuando el usuario interactúa con el carrusel
+  const handleInteractionStart = () => {
+    setIsAutoPlayPaused(true);
+  };
+  
+  // Opcional: Reanudar el auto-avance después de un tiempo sin interacción
+  const handleInteractionEnd = () => {
+    // Reanudar después de 10 segundos sin interacción
+    setTimeout(() => {
+      setIsAutoPlayPaused(false);
+    }, 10000);
+  };
 
   return (
     <section id="services" className="services-section">
       <div className="services-container">
         <h2 className="services-title">Nuestros Servicios</h2>
         
-        <div className="carousel-container">
+        <div 
+          className="carousel-container"
+          onMouseEnter={handleInteractionStart}
+          onTouchStart={handleInteractionStart}
+          onTouchEnd={handleInteractionEnd}
+          onMouseLeave={() => setIsAutoPlayPaused(false)}
+        >
           <div 
             className="carousel" 
             style={{ transform: `translateX(-${currentSlide * 100}%)` }}
@@ -65,6 +95,7 @@ const Services = () => {
                 <div 
                   className="service-image" 
                   style={{ backgroundImage: `url(${service.image})` }}
+                  onMouseEnter={handleInteractionStart}
                 ></div>
                 <div className="service-content">
                   <h3 className="service-title">{service.title}</h3>
@@ -75,10 +106,24 @@ const Services = () => {
           </div>
           
           <div className="carousel-controls">
-            <button className="carousel-btn" onClick={prevSlide} aria-label="Anterior">
+            <button 
+              className="carousel-btn" 
+              onClick={() => {
+                prevSlide();
+                handleInteractionStart();
+              }} 
+              aria-label="Anterior"
+            >
               &lt;
             </button>
-            <button className="carousel-btn" onClick={nextSlide} aria-label="Siguiente">
+            <button 
+              className="carousel-btn" 
+              onClick={() => {
+                nextSlide();
+                handleInteractionStart();
+              }} 
+              aria-label="Siguiente"
+            >
               &gt;
             </button>
           </div>

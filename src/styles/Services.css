@@ -13,22 +13,22 @@
 /* Contenedor principal */
 .services-container {
   width: 100%;
-  max-width: 1200px;
-  padding: 0 20px;
+  max-width: 1400px;
+  padding: 0 40px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 40px;
+  gap: 50px;
 }
 
 /* Título de la sección */
 .services-title {
-  font-size: 2.5rem;
+  font-size: 3rem;
   color: #2c3e50;
-  margin-bottom: 20px;
+  margin-bottom: 30px;
   text-align: center;
   position: relative;
-  padding-bottom: 15px;
+  padding-bottom: 20px;
 }
 
 .services-title::after {
@@ -46,9 +46,14 @@
 /* Contenedor del carrusel */
 .carousel-container {
   width: 100%;
+  max-width: 1200px;
   position: relative;
   overflow: hidden;
-  padding: 20px 0;
+  padding: 0;
+  margin: 0 auto;
+  border-radius: 15px;
+  background-color: transparent;
+  box-shadow: none;
 }
 
 /* Carrusel */
@@ -63,10 +68,13 @@
   min-width: 100%;
   display: flex;
   background: white;
-  border-radius: 10px;
+  border-radius: 12px;
   overflow: hidden;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
+  min-height: 450px;
+  margin: 0;
+  border: none;
 }
 
 .service-card:hover {
@@ -76,17 +84,20 @@
 
 .service-image {
   flex: 1;
-  min-height: 300px;
+  min-height: 100%;
+  min-width: 50%;
   background-size: cover;
   background-position: center;
+  background-repeat: no-repeat;
 }
 
 .service-content {
   flex: 1;
-  padding: 30px;
+  padding: 50px;
   display: flex;
   flex-direction: column;
   justify-content: center;
+  min-width: 40%;
 }
 
 .service-title {
@@ -160,20 +171,54 @@
 }
 
 /* Estilos responsivos */
-@media (max-width: 768px) {
-  .service-card {
-    flex-direction: column;
-  }
-  
-  .service-image {
-    min-height: 200px;
+@media (max-width: 1024px) {
+  .services-container {
+    padding: 0 30px;
+    gap: 40px;
   }
   
   .service-content {
-    padding: 20px;
+    padding: 40px 30px;
+  }
+}
+
+@media (max-width: 768px) {
+  .services-container {
+    padding: 0 20px;
+    gap: 30px;
   }
   
   .services-title {
-    font-size: 2rem;
+    font-size: 2.25rem;
+    margin-bottom: 20px;
+  }
+  
+  .carousel-container {
+    padding: 30px 15px;
+  }
+  
+  .service-card {
+    flex-direction: column;
+    min-height: auto;
+  }
+  
+  .service-image {
+    min-height: 250px;
+    width: 100%;
+  }
+  
+  .service-content {
+    padding: 30px 20px;
+    min-width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .services-title {
+    font-size: 1.8rem;
+  }
+  
+  .carousel-container {
+    padding: 20px 10px;
   }
 }
