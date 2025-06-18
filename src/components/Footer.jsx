@@ -12,7 +12,7 @@ const Footer = () => (
           <FaMapMarkerAlt /> Almte. Latorre 487, La Calera
         </a>
         <a href="tel:+56912345678"><FaPhoneAlt /> +56 9 95990336</a>
-        <a href="mailto:contacto@abogada.cl"><FaEnvelope /> rubetgi@hotmail.com</a>
+        <a href="mailto:contacto@abogada.cl"><FaEnvelope /> giselle.tapia.romo@gmail.com</a>
       </div>
       <div className="footer-section horario">
         <h4>Horario</h4>
@@ -38,7 +38,7 @@ const Footer = () => (
     </div>
     <div className="footer-divider" />
     <div className="footer-bottom">
-      <span>© 2025 Giselle Tapia Abogado. Todos los derechos reservados.</span>
+      <span>© 2025 Giselle Tapia Abogado - Estudio Jurídico. Todos los derechos reservados.</span>
     </div>
   </footer>
 );

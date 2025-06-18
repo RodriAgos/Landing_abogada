@@ -8,22 +8,22 @@ import './Header.css';
 
 const slides = [
   {
-    title: 'Abogada Mediadora',
-    subtitle: 'Especialista en herencias y ventas de terrenos',
-    buttonText: 'Consulta Gratis',
-    bgImage: '/slide1.jpg'  // Puedes usar .jpg aquí
-  },
-  {
     title: 'Asesoría Legal Personalizada',
-    subtitle: 'Soluciones efectivas para tus necesidades legales',
-    buttonText: 'Contáctanos',
-    bgImage: '/slide2.png'  // Y .png aquí
+    subtitle: 'Expertiz en materias civiles, especialmente herencias y particiones.',
+    buttonText: 'Contacte Ahora',
+    bgImage: '/slide1.jpg'
   },
   {
     title: 'Experiencia y Profesionalismo',
-    subtitle: 'Más de 10 años resolviendo casos exitosamente',
-    buttonText: 'Conoce Más',
-    bgImage: '/slide3.jpg'  // Y .jpg aquí de nuevo
+    subtitle: 'Más de 30 años de experiencia en derecho civil con ética profesional.',
+    buttonText: 'Contacte Ahora',
+    bgImage: '/slide3.jpg'
+  },
+  {
+    title: 'Atención Presencial y Cercana',
+    subtitle: 'Visítenos en el corazón de La Calera.',
+    buttonText: 'Contacta Ahora',
+    bgImage: '/slide2.png'
   }
 ];
 

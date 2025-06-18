@@ -45,8 +45,8 @@ const Contact = () => {
               </div>
               <div className="contact-details">
                 <p><i className="fas fa-map-marker-alt"></i> Dirección: Almte. Latorre 487, La Calera, Valparaíso</p>
-                <p><i className="fas fa-phone"></i> Teléfono: +56 9 1234 5678</p>
-                <p><i className="fas fa-envelope"></i> Email: contacto@abogada.cl</p>
+                <p><i className="fas fa-phone"></i> Teléfono: +56 9 9599 0336</p>
+                <p><i className="fas fa-envelope"></i> Email: giselle.tapia.romo@gmail.com</p>
                 <p><i className="fas fa-clock"></i> Horario: Lunes a Viernes 9:00 - 18:00 hrs</p>
               </div>
             </div>
