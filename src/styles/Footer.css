@@ -121,7 +121,7 @@
     flex-direction: column;
     justify-content: center;
   }
-  .footer-section h4, .section-title {
+  .footer-section h4, .footer-section .section-title {
     font-size: 1.18rem;
     color: #b35be9;
     margin-bottom: 0.55rem;

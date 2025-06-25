@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import '../styles/Services.css';
 
-// Importar imágenes (asegúrate de tener estas imágenes en tu carpeta de assets)
 import escriturasImg from '../assets/legales.jpg';
 import arbitralesImg from '../assets/mediacion.jpg';
 import gestionesImg from '../assets/terrenos.jpg';
@@ -61,14 +60,11 @@ const Services = () => {
     return () => clearInterval(timer);
   }, [currentSlide, isAutoPlayPaused]);
   
-  // Pausar el auto-avance cuando el usuario interactúa con el carrusel
   const handleInteractionStart = () => {
     setIsAutoPlayPaused(true);
   };
   
-  // Opcional: Reanudar el auto-avance después de un tiempo sin interacción
   const handleInteractionEnd = () => {
-    // Reanudar después de 10 segundos sin interacción
     setTimeout(() => {
       setIsAutoPlayPaused(false);
     }, 10000);

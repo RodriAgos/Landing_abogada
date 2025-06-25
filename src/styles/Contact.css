@@ -21,31 +21,44 @@
   align-items: center;
 }
 
-/* Título de la sección */
-.section-title {
-  font-size: 2.5rem;
+/* Título principal de la sección */
+.contact-container > h2.section-title {
+  font-size: 3rem;
   color: #2c3e50;
   margin: 0 auto 60px;
   text-align: center;
   position: relative;
-  display: inline-block;
-  padding-bottom: 15px;
-  width: auto;
-  max-width: 100%;
+  padding-bottom: 20px;
+  width: 100%;
 }
 
-.section-title::after {
+.contact-container > h2.section-title::after {
   content: '';
   position: absolute;
   bottom: 0;
-  left: 0;
-  right: 0;
+  left: 50%;
+  transform: translateX(-50%);
   width: 80px;
   height: 4px;
-  background-color: #8e44ad;
+  background-color: var(--primary-color, #8e44ad);
   border-radius: 2px;
-  margin: 0 auto;
-  display: block;
+}
+
+/* Títulos internos (como el del formulario) */
+.contact-form h3,
+.contact-info h3 {
+  font-size: 1.8rem;
+  color: #2c3e50;
+  margin-bottom: 25px;
+  text-align: left;
+  position: relative;
+  padding-bottom: 10px;
+  width: 100%;
+}
+
+.contact-form h3::after,
+.contact-info h3::after {
+  content: none; /* Elimina la línea decorativa de los títulos internos */
 }
 
 /* Contenedor del contenido */
@@ -95,20 +108,35 @@
   display: inline-block;
 }
 
-.contact-form h3::after,
-.contact-info h3::after {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 60px;
-  height: 3px;
-  background-color: var(--primary-color);
-  border-radius: 2px;
-  transform-origin: left;
+/* Mensajes del formulario */
+.form-message {
+  padding: 12px 15px;
+  margin-bottom: 20px;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  font-size: 0.95rem;
+  font-weight: 500;
 }
 
-/* Estilos del formulario */
+.form-message .icon {
+  margin-right: 10px;
+  font-size: 1.2rem;
+}
+
+.form-message.success {
+  background-color: #e8f5e9;
+  color: #2e7d32;
+  border: 1px solid #c8e6c9;
+}
+
+.form-message.error {
+  background-color: #ffebee;
+  color: #c62828;
+  border: 1px solid #ffcdd2;
+}
+
+/* Estilos para el formulario */
 .contact-form {
   display: flex;
   flex-direction: column;
@@ -159,30 +187,38 @@
 .form-group textarea {
   min-height: 120px;
   resize: vertical;
+  font-family: inherit; /* Hereda la fuente del body */
+  font-size: 1.05rem; /* Mismo tamaño que los inputs */
+  line-height: 1.5;
+  color: #444; /* Mismo color que los inputs */
 }
 
-.submit-btn {
-  background-color: var(--primary-color);
-  color: white;
-  border: none;
-  padding: 14px 32px;
-  border-radius: 6px;
-  font-size: 1.05rem;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  width: 100%;
-  max-width: 240px;
-  margin: 15px auto 5px;
-  display: block;
+/* Aumentar especificidad para anular estilos globales */
+.contact-form .submit-btn,
+.contact-form button[type="submit"].submit-btn {
+  background-color: var(--primary-color, #6633cc) !important;
+  color: white !important;
+  border: 1px solid rgba(255, 255, 255, 0.2) !important;
+  padding: 14px 36px !important;
+  border-radius: 25px !important;
+  font-size: 1.3rem !important;
+  cursor: pointer !important;
+  transition: all 0.3s ease !important;
+  width: 100% !important;
+  max-width: 240px !important;
+  margin: 15px auto 5px !important;
+  display: block !important;
+  font-weight: 600 !important;
+  text-transform: none !important;
 }
 
-.submit-btn:hover {
-  background-color: #5522aa;
-  transform: translateY(-2px);
-  box-shadow: 0 5px 15px rgba(102, 51, 204, 0.3);
+.contact-form .submit-btn:hover,
+.contact-form button[type="submit"].submit-btn:hover {
+  background-color: var(--primary-color, #6633cc) !important;
+  opacity: 0.9 !important;
+  transform: translateY(-2px) !important;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3) !important;
+  color: white !important;
 }
 
 /* Mapa */
@@ -197,15 +233,17 @@
 /* Detalles de contacto */
 .contact-details {
   margin-top: 25px;
+  color: #4a4a4a;
 }
 
 .contact-details p {
-  margin-bottom: 15px;
-  color: #555;
+  font-family: var(--font-family, 'Segoe UI', Arial, sans-serif);
+  font-size: 1.1rem; /* 17.6px basado en tamaño base de 16px */
+  line-height: 1.6;
+  margin: 15px 0;
   display: flex;
   align-items: flex-start;
-  line-height: 1.6;
-  font-size: 1rem;
+  gap: 10px;
 }
 
 .contact-details i {
@@ -248,6 +286,11 @@
 }
 
 @media (max-width: 768px) {
+  .contact-details {
+    font-size: 1rem; /* Tamaño ligeramente menor en móviles */
+    line-height: 1.5;
+  }
+  
   .contact-section {
     padding: 50px 0;
   }

@@ -3,19 +3,29 @@ import { FaBars, FaWhatsapp, FaPhone, FaTimes } from 'react-icons/fa';
 import logo from '../assets/logo_horizontal_b.jpg';
 import './Navbar.css';
 
-const PHONE_NUMBER = '+56912345678'; // Cambia por el número real
-const WHATSAPP_LINK = 'https://wa.me/56912345678'; // Cambia por el número real
+const PHONE_NUMBER = '+56995990336';
+const WHATSAPP_LINK = 'https://wa.me/56995990336';
 
 const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
 
   const handlePhoneClick = () => {
+    // Abre automáticamente el marcador en móviles o copia el número en el portapapeles en desktop
     if (window.innerWidth <= 768) {
       window.location.href = `tel:${PHONE_NUMBER}`;
+    } else {
+      // En desktop, copia el número al portapapeles
+      navigator.clipboard.writeText(PHONE_NUMBER).then(() => {
+        // Opcional: Mostrar un mensaje de confirmación
+        alert(`Número ${PHONE_NUMBER} copiado al portapapeles`);
+      }).catch(err => {
+        console.error('Error al copiar el número: ', err);
+        // Si falla, abre el dialer de teléfono
+        window.location.href = `tel:${PHONE_NUMBER}`;
+      });
     }
   };
 
-  // Cerrar menú al hacer click fuera
   React.useEffect(() => {
     if (!menuOpen) return;
     const handleClose = (e) => {
@@ -29,27 +39,28 @@ const Navbar = () => {
 
   return (
     <nav className="navbar">
-      {/* Menú hamburguesa solo visible en móvil */}
       <div className="navbar-section navbar-left">
         <button className="hamburger" onClick={() => setMenuOpen(!menuOpen)} aria-label="Abrir menú">
           {menuOpen ? <FaTimes size={26} /> : <FaBars size={26} />}
         </button>
       </div>
-      {/* Logo siempre centrado */}
       <div className="navbar-section navbar-center">
         <img src={logo} alt="Logo Abogada" className="navbar-logo" />
       </div>
-      {/* Iconos de contacto */}
       <div className="navbar-section navbar-right">
         <a href={WHATSAPP_LINK} target="_blank" rel="noopener noreferrer" aria-label="WhatsApp">
-          <FaWhatsapp size={22} />
+          <FaWhatsapp size={26} />
         </a>
-        <button className="phone-btn" onClick={handlePhoneClick} aria-label="Llamar">
-          <FaPhone size={22} />
+        <button 
+          className="phone-btn" 
+          onClick={handlePhoneClick} 
+          aria-label={`Llamar al número ${PHONE_NUMBER}`}
+          title={`Llamar al ${PHONE_NUMBER}`}
+        >
+          <FaPhone size={26} />
         </button>
       </div>
 
-      {/* Menú hamburguesa overlay en móvil */}
       {menuOpen && (
         <div className="mobile-menu">
           <ul>
