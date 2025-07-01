@@ -80,7 +80,7 @@ const Contact = () => {
   return (
     <section id="contact" className="contact-section">
       <div className="contact-container">
-        <h2 className="section-title">Contáctenos</h2>
+        <h2 className="contact-title">Contáctenos</h2>
         <div className="contact-content">
           <div className="contact-wrapper">
             <div className="contact-form">

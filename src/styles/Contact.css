@@ -22,17 +22,17 @@
 }
 
 /* Título principal de la sección */
-.contact-container > h2.section-title {
+.contact-container > h2.contact-title {
   font-size: 3rem;
   color: #2c3e50;
-  margin: 0 auto 60px;
+  margin: 0 0 60px 0;
   text-align: center;
   position: relative;
-  padding-bottom: 20px;
+  padding: 0 0 20px 0;
   width: 100%;
 }
 
-.contact-container > h2.section-title::after {
+.contact-section .contact-container > h2.contact-title::after {
   content: '';
   position: absolute;
   bottom: 0;
@@ -40,7 +40,7 @@
   transform: translateX(-50%);
   width: 80px;
   height: 4px;
-  background-color: var(--primary-color, #8e44ad);
+  background-color: var(--primary-color) !important;
   border-radius: 2px;
 }
 
@@ -52,13 +52,21 @@
   margin-bottom: 25px;
   text-align: left;
   position: relative;
-  padding-bottom: 10px;
+  padding-bottom: 15px;
   width: 100%;
+  display: inline-block;
 }
 
 .contact-form h3::after,
 .contact-info h3::after {
-  content: none; /* Elimina la línea decorativa de los títulos internos */
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 60px;
+  height: 3px;
+  background-color: var(--primary-color);
+  border-radius: 2px;
 }
 
 /* Contenedor del contenido */
