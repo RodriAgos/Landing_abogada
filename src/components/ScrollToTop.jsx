@@ -5,7 +5,6 @@ import '../styles/ScrollToTop.css';
 const ScrollToTop = () => {
   const [isVisible, setIsVisible] = useState(false);
 
-  // Mostrar el botón cuando el usuario se desplaza hacia abajo 300px
   const toggleVisibility = () => {
     if (window.pageYOffset > 300) {
       setIsVisible(true);
@@ -14,7 +13,6 @@ const ScrollToTop = () => {
     }
   };
 
-  // Desplazarse suavemente hacia arriba
   const scrollToTop = () => {
     window.scrollTo({
       top: 0,

@@ -2,7 +2,6 @@ import React from 'react';
 import '../styles/About.css';
 import aboutImage from '../assets/profile_abogada.jpg';
 
-// Importar íconos de react-icons
 import { FaLinkedin, FaWhatsapp } from 'react-icons/fa';
 
 const About = () => {
@@ -22,7 +21,7 @@ const About = () => {
           <div className="about-content">
             <div className="about-text">
               <p>
-                Soy Abogada de la Universidad de Concepción, especializada en derecho civil y sucesorio con más de 30 años de experiencia 
+                Soy Abogado de la Universidad de Concepción, especializada en derecho civil y sucesorio con más de 30 años de experiencia 
                 asesorando a clientes de la Quinta Región interior. Desde 2006 realizando suplencias en la Notaría La Calera, y desde
                 2016 en el Juzgado de Policía Local de Hijuelas, además de asumir la subrogación en el Juzgado de Letras de La Calera,
                 como parte de la terna de abogados.

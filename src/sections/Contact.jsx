@@ -1,42 +1,79 @@
-import React, { useRef, useState } from 'react';
-import emailjs from '@emailjs/browser';
+import React, { useState } from 'react';
 import { FaCheckCircle, FaExclamationCircle } from 'react-icons/fa';
 import '../styles/Contact.css';
 
 const Contact = () => {
-  const form = useRef();
-  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [formData, setFormData] = useState({
+    user_name: '',
+    user_email: '',
+    user_phone: '',
+    message: ''
+  });
+  const [errors, setErrors] = useState({});
   const [submitStatus, setSubmitStatus] = useState({ success: null, message: '' });
 
-  const sendEmail = (e) => {
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({
+      ...prev,
+      [name]: value
+    }));
+    
+    // Limpiar el error del campo cuando el usuario comienza a escribir
+    if (errors[name]) {
+      setErrors(prev => ({
+        ...prev,
+        [name]: ''
+      }));
+    }
+  };
+
+  const validateForm = () => {
+    const newErrors = {};
+    if (!formData.user_name.trim()) newErrors.user_name = 'El nombre es requerido';
+    if (!formData.user_email) {
+      newErrors.user_email = 'El correo es requerido';
+    } else if (!/\S+@\S+\.\S+/.test(formData.user_email)) {
+      newErrors.user_email = 'El correo no es válido';
+    }
+    if (!formData.message.trim()) newErrors.message = 'El mensaje es requerido';
+    
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
+  };
+
+  const handleSubmit = (e) => {
     e.preventDefault();
-    setIsSubmitting(true);
-    setSubmitStatus({ success: null, message: '' });
-
-    // Configuración de EmailJS
-    const serviceID = 'service_123'; // Reemplaza con tu Service ID de EmailJS
-    const templateID = 'template_123'; // Reemplaza con tu Template ID de EmailJS
-    const publicKey = 'tu_public_key'; // Reemplaza con tu Public Key de EmailJS
-
-    emailjs.sendForm(serviceID, templateID, form.current, publicKey)
-      .then((result) => {
-        console.log('Correo enviado con éxito!', result.text);
-        setSubmitStatus({ 
-          success: true, 
-          message: '¡Mensaje enviado con éxito! Nos pondremos en contacto contigo pronto.' 
-        });
-        form.current.reset();
-      })
-      .catch((error) => {
-        console.error('Error al enviar el correo:', error);
-        setSubmitStatus({ 
-          success: false, 
-          message: 'Hubo un error al enviar el mensaje. Por favor, inténtalo de nuevo más tarde.' 
-        });
-      })
-      .finally(() => {
-        setIsSubmitting(false);
+    if (validateForm()) {
+      const email = 'giselle.tapia.romo@gmail.com';
+      const subject = `Consulta de ${formData.user_name}`;
+      const body = `Nombre: ${formData.user_name}%0D%0A` +
+                  `Email: ${formData.user_email}%0D%0A` +
+                  `Teléfono: ${formData.user_phone || 'No proporcionado'}%0D%0A%0D%0A` +
+                  `Mensaje:%0D%0A${formData.message}`;
+      
+      window.location.href = `mailto:${email}?subject=${encodeURIComponent(subject)}&body=${body}`;
+      
+      setSubmitStatus({ 
+        success: true, 
+        message: 'Redirigiendo a tu cliente de correo...' 
       });
+      
+      // Resetear el formulario después de un tiempo
+      setTimeout(() => {
+        setFormData({
+          user_name: '',
+          user_email: '',
+          user_phone: '',
+          message: ''
+        });
+      }, 2000);
+    } else {
+      setSubmitStatus({ 
+        success: false, 
+        message: 'Por favor, completa los campos requeridos correctamente.' 
+      });
+    }
   };
   const mapUrl = "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3330.1681231929297!2d-71.2112467244316!3d-33.42713317336232!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9664e7e9e6d5d5d5%3A0x5b5b5b5b5b5b5b5b!2sAlmte.%20Latorre%20487%2C%20La%20Calera%2C%20Valpara%C3%ADso!5e0!3m2!1ses!2scl!4v1623264000000!5m2!1ses!2scl";
 
@@ -48,7 +85,7 @@ const Contact = () => {
           <div className="contact-wrapper">
             <div className="contact-form">
               <h3>Envíenos un mensaje</h3>
-              <form ref={form} onSubmit={sendEmail}>
+              <form onSubmit={handleSubmit}>
                 {submitStatus.message && (
                   <div className={`form-message ${submitStatus.success ? 'success' : 'error'}`}>
                     {submitStatus.success ? (
@@ -63,39 +100,49 @@ const Contact = () => {
                   <input 
                     type="text" 
                     name="user_name" 
+                    value={formData.user_name}
+                    onChange={handleChange}
+                    className={errors.user_name ? 'error' : ''}
                     placeholder="Nombre completo" 
-                    required 
                   />
+                  {errors.user_name && <span className="error-message">{errors.user_name}</span>}
                 </div>
                 <div className="form-group">
                   <input 
                     type="email" 
                     name="user_email" 
+                    value={formData.user_email}
+                    onChange={handleChange}
+                    className={errors.user_email ? 'error' : ''}
                     placeholder="Correo electrónico" 
-                    required 
                   />
+                  {errors.user_email && <span className="error-message">{errors.user_email}</span>}
                 </div>
                 <div className="form-group">
                   <input 
                     type="tel" 
                     name="user_phone" 
-                    placeholder="Teléfono" 
+                    value={formData.user_phone}
+                    onChange={handleChange}
+                    placeholder="Teléfono (opcional)" 
                   />
                 </div>
                 <div className="form-group">
                   <textarea 
                     name="message" 
+                    value={formData.message}
+                    onChange={handleChange}
+                    className={errors.message ? 'error' : ''}
                     placeholder="Su mensaje" 
-                    rows="6" 
-                    required
+                    rows="6"
                   ></textarea>
+                  {errors.message && <span className="error-message">{errors.message}</span>}
                 </div>
                 <button 
                   type="submit" 
-                  className="submit-btn" 
-                  disabled={isSubmitting}
+                  className="submit-btn"
                 >
-                  {isSubmitting ? 'Enviando...' : 'Enviar Mensaje'}
+                  Enviar Mensaje
                 </button>
               </form>
             </div>

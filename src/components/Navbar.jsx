@@ -10,17 +10,13 @@ const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
 
   const handlePhoneClick = () => {
-    // Abre automáticamente el marcador en móviles o copia el número en el portapapeles en desktop
     if (window.innerWidth <= 768) {
       window.location.href = `tel:${PHONE_NUMBER}`;
     } else {
-      // En desktop, copia el número al portapapeles
       navigator.clipboard.writeText(PHONE_NUMBER).then(() => {
-        // Opcional: Mostrar un mensaje de confirmación
         alert(`Número ${PHONE_NUMBER} copiado al portapapeles`);
       }).catch(err => {
         console.error('Error al copiar el número: ', err);
-        // Si falla, abre el dialer de teléfono
         window.location.href = `tel:${PHONE_NUMBER}`;
       });
     }

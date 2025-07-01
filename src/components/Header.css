@@ -28,7 +28,7 @@
   background-position: center;
   background-repeat: no-repeat;
   filter: brightness(0.6) blur(4px) contrast(1.1);
-  transform: scale(1.1); /* Evita bordes blancos por el blur */
+  transform: scale(1.1);
 }
 
 .content-wrapper {
@@ -89,7 +89,6 @@
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
 }
 
-/* Personalización de la paginación de Swiper */
 :root {
   --swiper-theme-color: var(--primary-color, #6633cc);
 }
@@ -107,7 +106,6 @@
   transform: scale(1.2);
 }
 
-/* Ajustes responsivos */
 @media (max-width: 768px) {
   .card {
     padding: 2rem;

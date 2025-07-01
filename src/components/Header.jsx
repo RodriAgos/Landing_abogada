@@ -22,7 +22,7 @@ const slides = [
   {
     title: 'Atención Presencial y Cercana',
     subtitle: 'Visítenos en el corazón de La Calera.',
-    buttonText: 'Contacta Ahora',
+    buttonText: 'Contacte Ahora',
     bgImage: '/slide2.png'
   }
 ];
@@ -52,7 +52,9 @@ const Header = () => {
                 <div className="card">
                   <h1>{slide.title}</h1>
                   <p>{slide.subtitle}</p>
-                  <button className="cta-button">{slide.buttonText}</button>
+                  <button className="cta-button" onClick={() => window.open('https://wa.me/56995990336', '_blank')}>
+  {slide.buttonText}
+</button>
                 </div>
               </div>
             </div>
